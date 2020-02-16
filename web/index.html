@@ -1,10 +1,8 @@
-﻿<!doctype html>
-
-<!--
+﻿<!--
 	
 	Last Modifieed: 09/02/2020
 
-	Template Version Release 2.3.3
+	Template Version Release 2.4.0
 	                      version.release.review
 	
 	VERSION	: +1 para evolução.
@@ -13,7 +11,7 @@
 	
 	-->
 
-<html lang="en">
+	<html lang="en">
 
 <head>
 
@@ -21,24 +19,30 @@
 
 	<meta name="author" content="Toni Calfim">
 	<meta name="author" content="Erivan 'RavenCodde' Pereira">
-	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<meta name="keywords" content="HTML,CSS,Dart">
 	<meta name="description" content="Growing Bushes.">
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<meta rel="stylesheet" type="text/css" href="styles.css">
-	<meta http-equiv="refresh" content="86400"> <!-- Refresh a cada 24 horas -->		
+	<meta http-equiv="refresh" content="86400"> <!-- Refresh a cada 24 horas -->	
 
 	<link rel="icon" href="favicon.ico">
 
+	<meta rel="stylesheet" type="text/css" href="styles.css">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="styles.css">		
+
 	<style>
-		body {
-			background-color: rgb(253, 246, 227);
-			color: lightgreen;
-			font: normal 9pt Verdana;
-			margin: 30px;
+		canvas {
+			border: 1px solid rgba(0, 255, 0, 100);
+			/* image-rendering: pixelated;
+			image-rendering: crisp-edges;
+			image-rendering: -moz-crisp-edges; */
+			width: 450px;
+			height: 500px;
 		}
 	</style>
 
@@ -46,16 +50,16 @@
 
 <body>
 
+<!-- For a complete list of all Google icons: https://www.w3schools.com/icons/icons_reference.asp -->
+<!-- <i class="material-icons" style="font-size:48px;color:white;">cloud</i> -->
+
 	<div id="output"></div>
 
 	<!-- <center>
 		<p><button>Botão</button></p>
 	</center> -->
 
-	<!-- Esse é o comando para abrir um Canvas -->
-	<!-- O Canvas será criado de dentro dos scripts -->
-	<canvas id="canvas" width="400" height="525" style="border:1px solid #8ec448;">
-		Your browser does not support the canvas element. </canvas>
+	<canvas id="canvas"> Your browser does not support the canvas element. </canvas>
 
 	<!-- Esse é o comando para chamar um arquivo em JavaScript -->
 	<!-- <script type="text/javascript" src="index.js"> </script> -->

@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'src/helpers.dart';
 
 //
@@ -42,8 +41,6 @@ import 'src/helpers.dart';
 //                                                    \\
 void main() => startApp();
 
-List<Bush> listBushes = List.generate(10, (_) => Bush(getRandomNumber));
-
 void startApp() {
   // Here you can include some kind of condition so the app can start
   run();
@@ -63,18 +60,33 @@ CanvasRenderingContext2D context2D = canvas.context2D;
 double x = 30;
 double y = 50;
 
+final int howManyBushesToCreate = 10;
+String color = 'lightgray';
+
 final int CANVAS_WIDTH = context2D.canvas.width;
 final double CANVAS_HEIGHT = context2D.canvas.height as double;
-
-final int howManyBushesToCreate = 100;
 
 // ================================================== \\
 //  All Classes, Objects, and Functions Definitions   \\
 // ================================================== \\
 //                                                    \\
+
+// Point(200,200) when applied Vector(-2, -3) will be now Point(198,197)
+class Point {
+  double x, y;
+  Point(this.x, this.y);
+}
+
+// Vector defines the direction and velocity each bush will grow
+class Vector {
+  double x, y;
+  Vector(this.x, this.y);
+}
+
 class Bush {
-  String color;
   Function _randomize;
+
+  String color;
 
   Point bushPosition = Point(0, 0); // (x,y)
   Vector bushVelocity = Vector(0, 0); // (x,y) direction and velocity.
@@ -86,7 +98,7 @@ class Bush {
   // ================================================== \\
   //                                                    \\
   Bush(this._randomize) {
-    color = 'grey';
+    color = color;
     bushPosition.x = _randomize(1, CANVAS_WIDTH);
     bushPosition.y = CANVAS_HEIGHT; // Canvas 400x400  15,400
     bushVelocity.y = 5;
@@ -94,10 +106,12 @@ class Bush {
   }
 }
 
+List<Bush> listBushes =
+    List.generate(howManyBushesToCreate, (_) => Bush(getRandomNumber));
+
 void update() {
   //
   // There's no definition here yet...
-
   //
 }
 
@@ -107,8 +121,8 @@ void draw() {
   for (var bush in listBushes) {
     context2D
       ..beginPath()
-      ..fillStyle = 'lightgreen'
-      ..arc(bush.bushPosition.x, bush.bushPosition.y, 2, 0, 2 * PI)
+      ..fillStyle = color
+      ..arc(bush.bushPosition.x, bush.bushPosition.y, 1, 0, 2 * PI)
       ..fill()
       ..closePath();
   }
@@ -126,17 +140,4 @@ void gameLoop(num timestamp) {
   draw();
 
   run();
-}
-
-// Point (200,200)  Vector (-2, -3)
-// Point (198,197)
-
-class Vector {
-  double x, y;
-  Vector(this.x, this.y);
-}
-
-class Point {
-  double x, y;
-  Point(this.x, this.y);
 }

@@ -24,12 +24,13 @@ This project has been started so we, and all people, could...
 
 
 ## Milestones
-+ #003: Start remotely pair coding...
+
 
 
 ## Accomplished Milestones
 + #001: Decide whether to use functional or object oriented paradigma.
 + #002: Prepare the core Dart file for first commit.
++ #003: Start remotely pair coding...
 
 
 ## How to get involved
