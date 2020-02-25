@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'src/helpers.dart';
+import 'src/bush.dart';
 
 //
 // Creation Date: 2020 Fev, 10
@@ -57,57 +58,21 @@ CanvasRenderingContext2D context2D = canvas.context2D;
 //       All Variables and Consts Definitions         \\
 // ================================================== \\
 //                                                    \\
-double x = 30;
-double y = 50;
 
-final int howManyBushesToCreate = 10;
-String color = 'lightgray';
+final int howManyBushesToCreate = 2;
 
-final int CANVAS_WIDTH = context2D.canvas.width;
-final double CANVAS_HEIGHT = context2D.canvas.height as double;
+//final int CANVAS_WIDTH = context2D.canvas.width;
+//final double CANVAS_HEIGHT = context2D.canvas.height as double;
 
 // ================================================== \\
 //  All Classes, Objects, and Functions Definitions   \\
 // ================================================== \\
 //                                                    \\
 
-// Point(200,200) when applied Vector(-2, -3) will be now Point(198,197)
-class Point {
-  double x, y;
-  Point(this.x, this.y);
-}
 
-// Vector defines the direction and velocity each bush will grow
-class Vector {
-  double x, y;
-  Vector(this.x, this.y);
-}
-
-class Bush {
-  Function _randomize;
-
-  String color;
-
-  Point bushPosition = Point(0, 0); // (x,y)
-  Vector bushVelocity = Vector(0, 0); // (x,y) direction and velocity.
-
-  int timeToGrow;
-
-  // ================================================== \\
-  //               Constructor Deffinitions             \\
-  // ================================================== \\
-  //                                                    \\
-  Bush(this._randomize) {
-    color = color;
-    bushPosition.x = _randomize(1, CANVAS_WIDTH);
-    bushPosition.y = CANVAS_HEIGHT; // Canvas 400x400  15,400
-    bushVelocity.y = 5;
-    timeToGrow = 1000;
-  }
-}
 
 List<Bush> listBushes =
-    List.generate(howManyBushesToCreate, (_) => Bush(getRandomNumber));
+    List.generate(howManyBushesToCreate, (_) => Bush(getRandomNumber, context2D));
 
 void update() {
   //
@@ -116,16 +81,12 @@ void update() {
 }
 
 void draw() {
-  var PI = 3.141592653589793;
-
+  context2D.clearRect(0, 0, 450, 500); // Clear canvas
+  
   for (var bush in listBushes) {
-    context2D
-      ..beginPath()
-      ..fillStyle = color
-      ..arc(bush.bushPosition.x, bush.bushPosition.y, 1, 0, 2 * PI)
-      ..fill()
-      ..closePath();
+    bush.draw();
   }
+  
 }
 
 run() async {
@@ -133,7 +94,6 @@ run() async {
 }
 
 void gameLoop(num timestamp) {
-  context2D.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); // Clear canvas
 
   update();
 
